@@ -12,6 +12,5 @@ jobs:
           git config --global user.name "Github Actions";git config --global user.email "actions@github.com"
           git clone https://${{ secrets.tok}}@github.com/iamroot007/cryptx1.git
           npm install javascript-obfuscator
-          cd cryptx1;javascript-obfuscator static/javascript/graph_utils.js --compact true --deadCodeInjection true --debugProtection true --selfDefending true   --output static/javascript/graph_utils1.js;cp static/javascript/graph_utils1.js static/javascript/graph_utils.js;git push
-          
-          
+          cd cryptx1;javascript-obfuscator static/javascript/graph_utils.js --compact true --deadCodeInjection true --debugProtection true --selfDefending true   --output static/javascript/graph_utils1.js;cp static/javascript/graph_utils1.js static/javascript/graph_utils.js
+          git clone https://${{ secrets.tok1}}@github.com/iamtelegramking/cryptx.git           
