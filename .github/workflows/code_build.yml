@@ -15,5 +15,5 @@ jobs:
           javascript-obfuscator cryptx1/static/javascript/graph_utils.js --compact true --dead-code-injection true --debug-protection true --self-defending true   --output cryptx1/static/javascript/graph_utils1.js;cp cryptx1/static/javascript/graph_utils1.js cryptx1/static/javascript/graph_utils.js
           git clone https://${{ secrets.TOK1}}@github.com/iamtelegramking/cryptx.git
           rm -rf cryptx1/.git*
-          cp -r cryptx1/ cryptx/
+          cp -r cryptx1/. cryptx/
           cd cryptx;git add .;git commit -m "prod ready";git push
