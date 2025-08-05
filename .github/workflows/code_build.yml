@@ -12,7 +12,8 @@ jobs:
           git config --global user.name "Github Actions";git config --global user.email "actions@github.com"
           git clone https://${{ secrets.TOK}}@github.com/iamroot007/cryptx1.git
           sudo npm i -g javascript-obfuscator
-          javascript-obfuscator cryptx1/static/javascript/graph_utils.js --debug-protection true  --output cryptx1/static/javascript/graph_utils1.js;cp cryptx1/static/javascript/graph_utils1.js cryptx1/static/javascript/graph_utils.js
+          javascript-obfuscator cryptx1/static/javascript/graph_utils.js --debug-protection true  --output cryptx1/static/javascript/graph_utils1.js
+          javascript-obfuscator cryptx1/static/javascript/graph_utils_read.js --debug-protection true  --output cryptx1/static/javascript/graph_utils_read1.js;cp cryptx1/static/javascript/graph_utils1.js cryptx1/static/javascript/graph_utils.js;cp cryptx1/static/javascript/graph_utils_read1.js cryptx1/static/javascript/graph_utils_read.js
           git clone https://${{ secrets.TOK1}}@github.com/iamtelegramking/cryptx.git
           rm -rf cryptx1/.git*
           cp -r cryptx1/. cryptx/
