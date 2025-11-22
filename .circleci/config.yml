@@ -3,9 +3,8 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/base:stable  # Use a CircleCI base image, e.g., ubuntu-based
+      - image: cimg/base:stable
     working_directory: ~/repo
-    timeout: 9999
     steps:
       - checkout
       - run:
