@@ -1,0 +1,46 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable  # Use a CircleCI base image, e.g., ubuntu-based
+    working_directory: ~/repo
+    timeout: 9999
+    steps:
+      - checkout
+      - run:
+          name: Setup git config
+          command: |
+            git config --global user.name "Github Actions"
+            git config --global user.email "actions@github.com"
+      - run:
+          name: Clone cryptx1 repo
+          command: git clone https://${TOK}@github.com/iamroot007/cryptx1.git
+      - run:
+          name: Install javascript-obfuscator
+          command: sudo npm i -g javascript-obfuscator
+      - run:
+          name: Obfuscate graph_utils.js files
+          command: |
+            javascript-obfuscator cryptx1/static/javascript/graph_utils.js --debug-protection true --output cryptx1/static/javascript/graph_utils1.js
+            javascript-obfuscator cryptx1/static/javascript/graph_utils_read.js --debug-protection true --output cryptx1/static/javascript/graph_utils_read1.js
+            cp cryptx1/static/javascript/graph_utils1.js cryptx1/static/javascript/graph_utils.js
+            cp cryptx1/static/javascript/graph_utils_read1.js cryptx1/static/javascript/graph_utils_read.js
+      - run:
+          name: Clone cryptx repo
+          command: git clone https://${TOK1}@github.com/iamtelegramking/cryptx.git
+      - run:
+          name: Replace cryptx with cryptx1 contents and push
+          command: |
+            rm -rf cryptx1/.git*
+            cp -r cryptx1/. cryptx/
+            cd cryptx
+            git add .
+            git commit -m "prod ready"
+            git push
+
+workflows:
+  version: 2
+  build_and_push:
+    jobs:
+      - build
